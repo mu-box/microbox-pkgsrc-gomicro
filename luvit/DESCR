@@ -1,0 +1,1 @@
+This collection of packages and modules implements a node.js style API for the luvi/lit runtime. It can be used as both a library or a standalone executable.

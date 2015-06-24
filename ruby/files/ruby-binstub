@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+$:.unshift  '@PREFIX@/@PKGBASE@/vendor/bundle'
+
+require 'bundler/setup'
+load  '@PREFIX@/@PKGBASE@/bin/@RUBY_APP_BIN@'

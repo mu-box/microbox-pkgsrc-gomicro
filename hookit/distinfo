@@ -1,0 +1,4 @@
+$NetBSD$
+
+SHA1 (patch-bin_hookit) = ce171ca428c4b0a6e4eeb60df953e01786beccc5
+SHA1 (patch-lib_hookit_resource_package.rb) = 245966a5a337410115f2fd9cc1d86d522114ec02

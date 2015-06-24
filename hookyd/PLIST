@@ -1,0 +1,5 @@
+@comment $NetBSD$
+etc/hookyd/hookyd.conf
+hookyd/hookyd.lua
+hookyd/job.lua
+hookyd/lever.lua

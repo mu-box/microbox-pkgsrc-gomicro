@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (luvit-0.10.0.tar.gz) = 44021ed126d6d22a22405172a3616e30577460e5
+RMD160 (luvit-0.10.0.tar.gz) = 1e73aaeb6d15897fd1e17fb99fb71391951f89e0
+Size (luvit-0.10.0.tar.gz) = 51793403 bytes
+SHA1 (patch-deps_yajl.gyp) = 43d7dcb2bdc59651bcdf71415f169db7a3bcc26c
+SHA1 (patch-luvit.gyp) = 3cbf314b33b86a4b5634a57d6578e49e68df7fc0

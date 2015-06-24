@@ -1,0 +1,12 @@
+$NetBSD$
+
+--- bin/hookit.orig	2015-06-16 19:50:18.000000000 +0000
++++ bin/hookit
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env ruby
+ 
+-MODULE_DIR = ENV['MODULE_DIR']  || "/opt/local/hookit/mod"
++MODULE_DIR = ENV['MODULE_DIR']  || "/opt/gonano/hookit/mod"
+ LOG_LEVEL  = ENV['LOG_LEVEL']   || :error
+ LOGFILE    = ENV['LOGFILE']     || '/var/log/hookit/hookit.log'
+ 
