@@ -3,7 +3,7 @@
 # vim: ts=8 sw=8 ft=make noet
 # git@github.com:pagodabox/hookit.git
 
-VERSION=		0.9.0
+VERSION=		0.9.1
 # PKGREVISION=		1
 DISTNAME=		hookit-${VERSION}
 CATEGORIES=		nanobox
@@ -16,8 +16,8 @@ COMMENT= 		The core framework to provide hookit scripts with re-usable component
 
 GIT_REPOSITORIES=	hookit
 GIT_REPO.hookit=	git@github.com:pagodabox/hookit.git
-# GIT_TAG=		v${VERSION}
-GIT_TAG=		bugfix/syntax
+GIT_TAG=		v${VERSION}
+# GIT_TAG=		bugfix/syntax
 
 WRKSRC=			${WRKDIR}/hookit
 

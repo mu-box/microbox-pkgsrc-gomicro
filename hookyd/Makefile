@@ -3,7 +3,7 @@
 # vim: ts=8 sw=8 ft=make noet
 
 VERSION=		0.0.0
-PKGREVISION=		2
+PKGREVISION=		3
 DISTNAME=		hookyd-${VERSION}
 CATEGORIES=		pagoda
 MASTER_SITES=		github.com/pagodabox/hookyd

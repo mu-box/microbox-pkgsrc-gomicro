@@ -27,8 +27,8 @@ $NetBSD$
  
 -  if not config.hook_dir then
 -    print("'hooky_dir' parameter is missing in config file")
-+  if not config.hookit_dir then
-+    print("'hookit_dir' parameter is missing in config file")
++  if not config.hook_dir then
++    print("'hook_dir' parameter is missing in config file")
      passed = false
    end
  

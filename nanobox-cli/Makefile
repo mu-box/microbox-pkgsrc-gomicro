@@ -12,20 +12,20 @@ HOMEPAGE=		github.com/pagodabox/nanobox-cli
 COMMENT=		CLI to interact with nanobox
 #LICENSE=       	# TODO: (see mk/license.mk)
 
-WRKSRC=			${WRKDIR}/nanobox-cli
+WRKSRC=			${WRKDIR}/nanobox-cli-0.0.0
 
 USE_LANGUAGES=		# none
 
-GIT_REPOSITORIES=	nanobox-cli
-GIT_REPO.nanobox-cli=	git@github.com:pagodabox/nanobox-cli.git
-GIT_TAG=		master
+# GIT_REPOSITORIES=	nanobox-cli
+# GIT_REPO.nanobox-cli=	git@github.com:pagodabox/nanobox-cli.git
+# GIT_TAG=		master
 # GIT_TAG=		${VERSION}
 
 GO_DOMAIN=		github.com
 GO_USER=		pagodabox
 GO_PROJECT=		nanobox-cli
 
-.include "../../gonano/git/git-package.mk"
+# .include "../../gonano/git/git-package.mk"
 .include "../../gonano/go/go-app.mk"
 .include "../../mk/bsd.pkg.mk"
 

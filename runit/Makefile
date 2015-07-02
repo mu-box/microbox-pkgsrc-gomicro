@@ -1,6 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	runit-2.1.2
+PKGREVISION=		1
 CATEGORIES=	sysutils
 MASTER_SITES=	${HOMEPAGE}
 
