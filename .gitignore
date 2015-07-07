@@ -1,0 +1,5 @@
+.DS_Store
+.vagrant
+.pkgsrc-lite
+.distfiles
+.packages
