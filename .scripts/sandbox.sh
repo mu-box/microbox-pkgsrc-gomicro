@@ -61,19 +61,19 @@ create_chroot() {
       -f /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz \
       -C /chroot/${chroot}
 
-  # ensure /opt/gonano/var/db/pkgin exists
-  if [ ! -d /chroot/${chroot}/opt/gonano/var/db/pkgin ]; then
-    mkdir -p /chroot/${chroot}/opt/gonano/var/db/pkgin
+  # ensure /var/gonano/db/pkgin exists
+  if [ ! -d /chroot/${chroot}/var/gonano/db/pkgin ]; then
+    sudo mkdir -p /chroot/${chroot}/var/gonano/db/pkgin
   fi
 
   # ensure the platform dir exists
   if [ ! -d /content/packages/pkgsrc/${project}/${platform}/All ]; then
-    mkdir -p /content/packages/pkgsrc/${project}/${platform}/All
+    sudo mkdir -p /content/packages/pkgsrc/${project}/${platform}/All
   fi
 
-  # link /opt/gonano/var/db/pkgin/cache to package dir
-  if [ ! -L /chroot/${chroot}/opt/gonano/var/db/pkgin/cache ]; then
-    ln -s /content/packages/pkgsrc/${project}/${platform}/All /chroot/${chroot}/opt/gonano/var/db/pkgin/cache
+  # link /var/gonano/db/pkgin/cache to package dir
+  if [ ! -L /chroot/${chroot}/var/gonano/db/pkgin/cache ]; then
+    sudo ln -s /content/packages/pkgsrc/${project}/${platform}/All /chroot/${chroot}/var/gonano/db/pkgin/cache
   fi
 
   # install gcc

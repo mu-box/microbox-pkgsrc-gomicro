@@ -125,9 +125,9 @@ Vagrant.configure('2') do |config|
               -C /
     fi
 
-    # ensure /opt/gonano/var/db exists
-    if [ ! -d /opt/gonano/var/db ]; then
-      mkdir -p /opt/gonano/var/db
+    # ensure /var/gonano/db exists
+    if [ ! -d /var/gonano/db ]; then
+      mkdir -p /var/gonano/db
     fi
   SCRIPT
 
