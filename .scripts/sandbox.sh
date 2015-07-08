@@ -29,7 +29,8 @@ detect_platform() {
 
 create_chroot() {
   chroot=$1
-  user=`whoami`
+  user=$(whoami)
+  group=$(id -g -n ${user})
   project="gonano"
   platform=$(detect_platform)
 
@@ -88,6 +89,12 @@ create_chroot() {
   sudo \
     /chroot/${chroot}/sandbox \
       /opt/gonano/bin/pkgin -y in gcc49 pkgdiff
+
+  # chown /opt/gonano directory
+  echo "chown-ing /opt/gonano directory"
+  sudo \
+    /chroot/${chroot}/sandbox \
+      chown -R ${user}:${group} /opt/gonano
 }
 
 enter_chroot() {
