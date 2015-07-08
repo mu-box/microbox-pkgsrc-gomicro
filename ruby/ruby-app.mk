@@ -14,7 +14,7 @@ RUBY_VERSION_REQD=	22
 pre-install: remove-git
 
 do-build:
-	cd ${WRKSRC} && bundle22 install --standalone --path vendor/bundle
+	cd ${WRKSRC} && bundle22 install --standalone --path vendor/bundle --without development test
 
 do-install:
 	${CP} -r ${WRKSRC} ${DESTDIR}${PREFIX}
