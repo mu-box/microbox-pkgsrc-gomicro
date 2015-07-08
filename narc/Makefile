@@ -2,16 +2,16 @@
 # -*- mode: makefile; tab-width: 8; indent-tabs-mode: 1 -*-
 # vim: ts=8 sw=8 ft=make noet
 
-VERSION=		0.1.0
+VERSION=		0.2.0
 # PKGREVISION=		1
 DISTNAME=		narc-${VERSION}
 CATEGORIES=		pagodabox
-MASTER_SITES=		https://bitbucket.org/pagodabox-logvac/narc
+MASTER_SITES=		https://github.com/pagodabox/narc.git
 
 MAINTAINER=		tyler@pagodabox.com
-HOMEPAGE=		https://bitbucket.org/pagodabox-logvac/narc
+HOMEPAGE=		https://github.com/pagodabox/narc
 COMMENT=		Watches log files for logvac
-LICENSE=		cddl-1.0
+LICENSE=		mit
 
 USE_LANGUAGES=		c c++
 USE_TOOLS=		gmake pax perl aclocal autoconf automake
@@ -33,7 +33,7 @@ BUILDLINK_TREE+=	-libuv
 
 
 GIT_REPOSITORIES=	narc
-GIT_REPO.narc=		git@bitbucket.org:pagodabox-logvac/narc.git
+GIT_REPO.narc=		git@github.com:pagodabox/narc.git
 GIT_TAG=		v${VERSION}
 # GIT_TAG=		master
 
