@@ -29,6 +29,7 @@ detect_platform() {
 
 create_chroot() {
   chroot=$1
+  user=`whoami`
   project="gonano"
   platform=$(detect_platform)
 
@@ -39,8 +40,14 @@ create_chroot() {
   sudo \
     /opt/gonano/sbin/mksandbox \
       --without-pkgsrc \
-      --rwdirs=/run,/content,/home,/content/pkgsrc,/content/pkgsrc/gonano,/content/packages,/content/distfiles \
+      --rwdirs=/run,/content,/home,/var/.ssh,/content/pkgsrc,/content/pkgsrc/gonano,/content/packages,/content/distfiles \
       /chroot/${chroot}
+
+  # link ssh keys
+  sudo \
+    /chroot/${chroot}/sandbox \
+      ln -s /var/.ssh/id_rsa /home/${user}/.ssh/id_rsa; \
+      ln -s /var/.ssh/id_rsa.pub /home/${user}/.ssh/id_rsa.pub;
 
   # create the pkgsrc file cache
   if [ ! -d /content/packages/pkgsrc/${project}/${platform} ]; then
