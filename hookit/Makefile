@@ -3,7 +3,7 @@
 # vim: ts=8 sw=8 ft=make noet
 # git@github.com:pagodabox/hookit.git
 
-VERSION=		0.9.1
+VERSION=		0.9.2
 # PKGREVISION=		1
 DISTNAME=		hookit-${VERSION}
 CATEGORIES=		nanobox
