@@ -84,12 +84,6 @@ create_chroot() {
     sudo ln -s /content/packages/pkgsrc/${project}/${platform}/All /chroot/${chroot}/var/gonano/db/pkgin/cache
   fi
 
-  # install gcc
-  echo "Installing GNU compiler collection"
-  sudo \
-    /chroot/${chroot}/sandbox \
-      /opt/gonano/bin/pkgin -y in gcc49 pkgdiff
-
   # chown /opt/gonano directory
   echo "chown-ing /opt/gonano directory"
   sudo \

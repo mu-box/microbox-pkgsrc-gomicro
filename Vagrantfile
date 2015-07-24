@@ -109,6 +109,12 @@ Vagrant.configure('2') do |config|
     chmod +x /etc/profile.d/vagrant.sh
   SCRIPT
 
+  config.vm.provision "shell", inline: <<-SCRIPT
+    echo "installing build tools..."
+    apt-get -y update -qq
+    apt-get install -y build-essential
+  SCRIPT
+
   config.vm.provision 'shell', inline: <<-SCRIPT
     echo "Downloading and Extracting Bootstrap..."
 
