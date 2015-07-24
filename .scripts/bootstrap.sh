@@ -20,7 +20,6 @@ packages=(
   sysutils/coreutils
   devel/gettext-lib
   archivers/libarchive
-  converters/libiconv
   security/mozilla-rootcerts
   lang/nawk
   textproc/nbsed

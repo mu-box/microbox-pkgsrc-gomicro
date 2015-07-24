@@ -15,7 +15,7 @@ run_in_chroot() {
 for package in $(ls /content/pkgsrc/gonano); do
 
   # ignore build-essential
-  if [ "${package}" = "build-essential"]; then
+  if [ "${package}" = "build-essential" ]; then
     continue
   fi
 
