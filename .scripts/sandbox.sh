@@ -52,7 +52,7 @@ create_chroot() {
 
   # create the pkgsrc file cache
   if [ ! -d /content/packages/pkgsrc/${project}/${platform} ]; then
-    mkdir -p /content/packages/pkgsrc/${project}/${platform}
+    sudo mkdir -p /content/packages/pkgsrc/${project}/${platform}
   fi
 
   # fetch bootstrap

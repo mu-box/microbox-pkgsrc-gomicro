@@ -12,7 +12,7 @@ project='gonano'
 platform=$(detect_platform)
 depends=(
   net/libfetch
-)
+  )
 packages=(
   devel/bmake
   pkgtools/bootstrap-mk-files
@@ -33,12 +33,15 @@ packages=(
   databases/sqlite3
   archivers/xz
   devel/zlib
-)
+  )
+extra_packages=(
+  pkgtools/mksandbox
+  )
 
 # 0) clean start
 sudo rm -rf /opt/${project}
 sudo rm -rf /var/tmp/${project}-bootstrap
-sudo rm -rf /content/packages/pkgsrc/gonano/Linux
+# sudo rm -rf /content/packages/pkgsrc/gonano/Linux
 
 # 1) install build-essential
 sudo apt-get -y update -qq && \
@@ -138,3 +141,13 @@ curl \
   -H "Key: ${NANOBOX_SECRET}" \
   --data-binary \@/var/tmp/bootstrap.tar.gz \
   https://pkgsrc.nanobox.io/${NANOBOX_USER}/${project}/${platform}/bootstrap.tar.gz
+
+# 12) build/install extra packages
+for i in ${extra_packages[@]}; do
+  /opt/${project}/bin/bmake -C /content/pkgsrc/${i} package
+  /opt/${project}/bin/bmake -C /content/pkgsrc/${i} install
+done
+
+# 13) mv bootstrap into cache for chroots
+cp /var/tmp/bootstrap.tar.gz \
+  /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz
