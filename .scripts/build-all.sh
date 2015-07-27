@@ -25,13 +25,15 @@ for package in $(ls /content/pkgsrc/gonano); do
   fi
 
   # 1) create a chroot
-  sandbox create ${package}
+  if [ ! -d /chroot/${package} ]; then
+    sandbox create ${package}
+  fi
 
   # 2) make package
   run_in_chroot ${package} "/opt/gonano/bin/bmake -C /content/pkgsrc/gonano/${package} package"
 
   # 3) upload package
-  # run_in_chroot ${package} "/opt/gonano/bin/bmake -C /content/pkgsrc/gonano/${package} publish"
+  run_in_chroot ${package} "/opt/gonano/bin/bmake -C /content/pkgsrc/gonano/${package} publish"
 
   # 4) cleanup chroot
   # /opt/util/sandbox rm ${package}
