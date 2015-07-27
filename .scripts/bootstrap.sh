@@ -182,5 +182,5 @@ for i in ${extra_packages[@]}; do
 done
 
 # 13) mv bootstrap into cache for chroots
-cp /var/tmp/bootstrap.tar.gz \
+cp -f /var/tmp/bootstrap.tar.gz \
   /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz
