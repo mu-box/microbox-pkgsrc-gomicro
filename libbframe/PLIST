@@ -1,0 +1,4 @@
+@comment $NetBSD$
+include/bframe.h
+lib/libbframe.la
+@pkgdir include/uv-private
