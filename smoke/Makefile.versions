@@ -1,0 +1,29 @@
+# $NetBSD$
+# -*- mode: makefile; tab-width: 8; indent-tabs-mode: 1 -*-
+# vim: ts=8 sw=8 ft=make noet
+
+_SMOKE_VERSIONS+=					\
+	cowboy			0.9.0			\
+	cowlib			0.4.0			\
+	dispcount		1.0.0			\
+	goldrush		0.1.6			\
+	jiffy			0.8.4			\
+	jsx			1.4.5			\
+	jsxd			0.1.7			\
+	lager			2.0.3			\
+	smoke			${VERSION}		\
+	smoke_core		1.0.9			\
+	smoke_discovery		1.0.0			\
+	msgpack			0.2.7			\
+	ranch			0.9.0			\
+	thrift			0.8.0			\
+	emongo			0.2			
+
+.for name version in ${_SMOKE_VERSIONS}
+VERSION.${name}=${version}
+PLIST_SUBST+=	VERSION.${name}=${version}
+.endfor
+
+.for _pkg_ _version_ in $(_SMOKE_VERSIONS)
+PRINT_PLIST_AWK+=	{if ($$0 ~ /\/$(_pkg_)-$(_version_)\//) {sub(/\/$(_pkg_)-$(_version_)\//,"/$(_pkg_)-$${VERSION.$(_pkg_)}/", $$0);}}
+.endfor

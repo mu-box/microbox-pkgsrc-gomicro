@@ -1,0 +1,3 @@
+nanoboxd
+<!-- TODO initialize and authenticate serf integration * inform vxlan (add/remove) container: * create * run hook * delete Stats Collection * console -->
+<!-- external deamons Logvac Mist routing warehouse * git/gritty -->

@@ -1,33 +1,28 @@
 # $NetBSD$
 # -*- mode: makefile; tab-width: 8; indent-tabs-mode: 1 -*-
 # vim: ts=8 sw=8 ft=make noet
+# git@github.com:pagodabox/openssh-portable.git
 
-DISTNAME=		openssh-6.2p1
-PKGNAME=		openssh-auth-script-6.2.1
-VERSION= 		6.2.1
-SVR4_PKGNAME=		ossh
-CATEGORIES=		security
-MASTER_SITES=		ftp://ftp.openssh.com/pub/OpenBSD/OpenSSH/portable/ \
-			ftp://ftp3.usa.openbsd.org/pub/OpenBSD/OpenSSH/portable/ \
-			ftp://gd.tuwien.ac.at/opsys/OpenBSD/OpenSSH/portable/ \
-			ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/ \
-			ftp://ftp.jaist.ac.jp/pub/OpenBSD/OpenSSH/portable/ \
-			ftp://ftp.belnet.be/packages/openbsd/OpenSSH/portable/
-# Don't delete the last entry -- it's there if the pkgsrc version is not
-# up-to-date and the mirrors already removed the old distfile.
+VERSION=		7.1.P1
+# PKGREVISION=		1
+DISTNAME=		openssh-${VERSION:S/P//}
+CATEGORIES=		nanobox
+MASTER_SITES=		github.com/pagodabox/openssh-portable
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.openssh.com/
-COMMENT=		Open Source Secure shell client and server (remote login program)
+HOMEPAGE=		github.com/pagodabox/openssh-portable
+COMMENT= 		A combination of Nano and Init
+LICENSE=		BSD
 
-CONFLICTS=		sftp-[0-9]*
-CONFLICTS+=		ssh-[0-9]* ssh6-[0-9]*
-CONFLICTS+=		ssh2-[0-9]* ssh2-nox11-[0-9]*
-CONFLICTS+=		openssh+gssapi-[0-9]*
-CONFLICTS+=		lsh>2.0
+GIT_REPOSITORIES=	openssh
+GIT_REPO.openssh=	git@github.com:pagodabox/openssh-portable.git
+GIT_TAG=		V_${VERSION:S/./_/g}-auth_script
+# GIT_TAG=		master
+
+WRKSRC=			${WRKDIR}/openssh
 
 USE_GCC_RUNTIME=	yes
-USE_TOOLS+=		perl
+USE_TOOLS+=		perl autoconf automake
 
 CRYPTO=			yes
 
@@ -42,7 +37,34 @@ BUILD_DEFS+=		VARBASE
 INSTALL_TARGET=		install-nokeys
 PLIST_SRC=		# empty
 
-.include "options.mk"
+.include "../../mk/bsd.prefs.mk"
+
+PKG_OPTIONS_VAR=	PKG_OPTIONS.openssh
+PKG_SUPPORTED_OPTIONS=	kerberos hpn-patch pam
+
+.include "../../mk/bsd.options.mk"
+
+.if !empty(PKG_OPTIONS:Mkerberos)
+.  include "../../mk/krb5.buildlink3.mk"
+CONFIGURE_ARGS+=	--with-kerberos5=${KRB5BASE:Q}
+.  if ${KRB5_TYPE} == "mit-krb5"
+CONFIGURE_ENV+=		ac_cv_search_k_hasafs=no
+.  endif
+.endif
+
+.if !empty(PKG_OPTIONS:Mhpn-patch)
+PATCHFILES=		openssh-6.2p1-hpn13v14.diff
+PATCH_SITES=		ftp://ftp.NetBSD.org/pub/NetBSD/misc/imil/openssh/
+PATCH_DIST_STRIP=	-p1
+.endif
+
+.if !empty(PKG_OPTIONS:Mpam)
+.include "../../mk/pam.buildlink3.mk"
+CONFIGURE_ARGS+=	--with-pam
+PLIST_SRC+=		${.CURDIR}/PLIST.pam
+MESSAGE_SRC+=		${.CURDIR}/MESSAGE.pam
+MESSAGE_SUBST+=		EGDIR=${EGDIR}
+.endif
 
 .if ${OPSYS} == "Interix"
 
@@ -168,15 +190,18 @@ RCD_SCRIPT_SRC.sshd=	${WRKDIR}/sshd.sh
 PLIST_SRC+=		${.CURDIR}/PLIST
 FILES_SUBST+=		SSH_PID_DIR=${SSH_PID_DIR:Q}
 
-SUBST_CLASSES+=		patch
-SUBST_STAGE.patch=	pre-configure
-SUBST_FILES.patch=	session.c
-SUBST_SED.patch=	-e '/channel_input_port_forward_request/s/0/ROOTUID/'
-SUBST_MESSAGE.patch=	More patch a file.
+# SUBST_CLASSES+=		patch
+# SUBST_STAGE.patch=	pre-configure
+# SUBST_FILES.patch=	session.c
+# SUBST_SED.patch=	-e '/channel_input_port_forward_request/s/0/ROOTUID/'
+# SUBST_MESSAGE.patch=	More patch a file.
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
+
+pre-configure:
+	cd ${WRKSRC}; autoreconf -vfi
 
 #
 # type of key "ecdsa" isn't always supported depends on OpenSSL.
@@ -201,4 +226,5 @@ post-install:
 	  ${DESTDIR}${EGDIR}/sshd.pam
 .endif
 
+.include "../../gonano/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -3,7 +3,7 @@
 # vim: ts=8 sw=8 ft=make noet
 
 DISTNAME=       	vtep-${VERSION}
-VERSION?=		0.0.1
+VERSION?=		0.0.2
 PG_VISIBILITY=		public
 # PKGREVISION?=		1
 CATEGORIES=		devel

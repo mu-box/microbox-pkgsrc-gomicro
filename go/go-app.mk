@@ -5,14 +5,18 @@
 .if !defined(GO_APP_MK)
 GO_APP_MK=	#defined
 
-BUILD_DEPENDS+=         go>=1.3.1:../../lang/go
+BUILD_DEPENDS+=         go>=1.5:../../gonano/go15
 BUILD_DEPENDS+=		mercurial>=3.3.2:../../devel/mercurial
 BUILD_DEPENDS+=		bzr>=2.5.1:../../devel/bzr
+.if exists(../../gonano/git/Makefile)
+BUILD_DEPENDS+=         git>=2.5:../../gonano/git
+.else
 .if exists(../../devel/git/Makefile)
 BUILD_DEPENDS+=         git-base>=1.6.4:../../devel/git-base
 .else
 BUILD_DEPENDS+=         scmgit-base>=1.6.4:../../devel/scmgit-base
-.endif		
+.endif
+.endif	
 
 GOPATH=				${WRKDIR}/gocode
 GOROOT=				${WRKDIR}/gocode
@@ -31,7 +35,7 @@ go-symlink:
 	@${MKDIR} -p ${GOPATH}/src/${GO_DOMAIN}/${GO_USER}
 	@${LN} -s ${WRKSRC} ${GOPATH}/src/${GO_DOMAIN}/${GO_USER}/${GO_PROJECT}
 
-go-get: go-symlink
+go-get: go-copy
 	@cd ${GOPATH}/src/${GO_DOMAIN}/${GO_USER}/${GO_PROJECT} && GOPATH=${GOPATH} ${PKGSRCDIR}/gonano/go/files/go-get.sh .
 
 go-build: go-get
