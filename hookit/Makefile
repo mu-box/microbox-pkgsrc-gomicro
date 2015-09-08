@@ -3,13 +3,13 @@
 # vim: ts=8 sw=8 ft=make noet
 # git@github.com:pagodabox/hookit.git
 
-VERSION=		0.9.2
+VERSION=		0.10.0
 # PKGREVISION=		1
 DISTNAME=		hookit-${VERSION}
 CATEGORIES=		nanobox
 MASTER_SITES=		github.com/pagodabox/hookit
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
+MAINTAINER=		tyler@pagodabox.com
 HOMEPAGE=		github.com/pagodabox/hookit
 COMMENT= 		The core framework to provide hookit scripts with re-usable components.
 #LICENSE=		# TODO: (see mk/license.mk)
