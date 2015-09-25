@@ -3,7 +3,7 @@
 # vim: ts=8 sw=8 ft=make noet
 DISTNAME=		shon-${VERSION}
 VERSION?=		0.0.0
-PKGREVISION?=		1
+PKGREVISION?=		2
 CATEGORIES=		gonano
 MASTER_SITES=		github.com/pagodabox/shon
 

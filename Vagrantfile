@@ -51,20 +51,20 @@ Vagrant.configure('2') do |config|
     ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
   end
 
-  config.vm.define "vxlan-test-1" do |ubuntu|
-    ubuntu.vm.box = 'trusty64'
-    ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
-  end
+  # config.vm.define "vxlan-test-1" do |ubuntu|
+  #   ubuntu.vm.box = 'trusty64'
+  #   ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  # end
 
-  config.vm.define "vxlan-test-2" do |ubuntu|
-    ubuntu.vm.box = 'trusty64'
-    ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
-  end
+  # config.vm.define "vxlan-test-2" do |ubuntu|
+  #   ubuntu.vm.box = 'trusty64'
+  #   ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  # end
 
-  config.vm.define "vxlan-test-3" do |ubuntu|
-    ubuntu.vm.box = 'trusty64'
-    ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
-  end
+  # config.vm.define "vxlan-test-3" do |ubuntu|
+  #   ubuntu.vm.box = 'trusty64'
+  #   ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  # end
 
   config.vm.provider 'virtualbox' do |v|
     v.memory = 512
