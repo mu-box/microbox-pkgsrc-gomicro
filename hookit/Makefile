@@ -3,7 +3,7 @@
 # vim: ts=8 sw=8 ft=make noet
 # git@github.com:nanopack/hookit.git
 
-VERSION=		0.12.2
+VERSION=		0.12.3
 # PKGREVISION=		1
 DISTNAME=		hookit-${VERSION}
 CATEGORIES=		nanobox
