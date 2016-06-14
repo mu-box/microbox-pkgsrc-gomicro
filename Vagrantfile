@@ -79,6 +79,16 @@ Vagrant.configure('2') do |config|
     override.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_vmware.box'
   end
 
+  config.vm.provider "docker" do |v, override|
+    v.build_dir = '.'
+    v.create_args = ['--privileged']
+    v.expose = [22]
+    v.has_ssh = true
+    
+    override.vm.box = nil
+    override.vm.box_url = nil
+  end
+
   config.vm.network "private_network", type: "dhcp"
 
   # config.vm.define "SmartOS" do |smartos|
