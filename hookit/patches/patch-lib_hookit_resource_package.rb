@@ -1,22 +1,18 @@
 $NetBSD$
 
---- lib/hookit/resource/package.rb.orig	2015-06-16 19:50:18.000000000 +0000
+--- lib/hookit/resource/package.rb.orig	2016-08-30 21:40:10.290892390 +0000
 +++ lib/hookit/resource/package.rb
-@@ -63,12 +63,12 @@ module Hookit
+@@ -46,11 +46,9 @@ module Hookit
        def pkgin
          case scope
          when :default
 -          "/opt/local/bin/pkgin"
 -        when :gopagoda
 -          "/opt/gopagoda/bin/pkgin"
-+          "/opt/gonano/bin/pkgin"
+-        when :gonano
+           "/opt/gonano/bin/pkgin"
 +        when :nanobox
 +          "/data/bin/pkgin"
          end
        end
  
-     end
-   end
--end
-\ No newline at end of file
-+end
