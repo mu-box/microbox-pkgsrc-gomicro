@@ -5,7 +5,7 @@
 .if !defined(GO_APP_MK)
 GO_APP_MK=	#defined
 
-BUILD_DEPENDS+=         go>=1.3.1:../../gonano/go16
+BUILD_DEPENDS+=         go>=1.3.1:../../gomicro/go16
 BUILD_DEPENDS+=		mercurial>=3.3.2:../../devel/mercurial
 BUILD_DEPENDS+=		bzr>=2.5.1:../../devel/bzr
 .elif exists(../../devel/git/Makefile)

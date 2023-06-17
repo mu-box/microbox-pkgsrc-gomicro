@@ -1,6 +1,6 @@
-# Nanobox pkgsrc-gonano
+# Microbox pkgsrc-gomicro
 
-This repo contains the package definitions assets that all Nanobox containers may need to perform administrative tasks.
+This repo contains the package definitions assets that all Microbox containers may need to perform administrative tasks.
 
 ## Overview
 
@@ -19,12 +19,12 @@ This project will create a re-usable build environment using [vagrant](https://w
 1. Ensure that the following environment variables are exported in your bashrc, bash_profile, or zshrc:
 
   ```bash
-  # Nanobox secrets
-  export NANOBOX_USER="nanobox"
-  export NANOBOX_GONANO_PROJECT="gonano"
-  export NANOBOX_GONANO_SECRET="INSERT_SECRET_HERE"
+  # Microbox secrets
+  export MICROBOX_USER="microbox"
+  export MICROBOX_GOMICRO_PROJECT="gomicro"
+  export MICROBOX_GOMICRO_SECRET="INSERT_SECRET_HERE"
   # optionally set the default vagrant plugin to vmware if the plugin is installed
-  # export NANOBOX_BUILD_VAGRANT_PROVIDER="vmware_fusion"
+  # export MICROBOX_BUILD_VAGRANT_PROVIDER="vmware_fusion"
   ```
 
 2. Initialize the vagrant environment
@@ -43,7 +43,7 @@ The following subcommands are available to manage sandboxes: create, enter, rm, 
 
 ### pkgsrc
 
-Nanobox uses [pkgsrc](https://www.pkgsrc.org/) exclusively as the build system. pkgsrc is chosen primarily for it's correctness and portability.
+Microbox uses [pkgsrc](https://www.pkgsrc.org/) exclusively as the build system. pkgsrc is chosen primarily for it's correctness and portability.
 
 For an in-depth understanding of how pkgsrc works and a comprehensive guide on defining and building packages, please refer to [the pkgsrc developer's guide](http://www.netbsd.org/docs/pkgsrc/developers-guide.html)
 
@@ -73,12 +73,12 @@ Each Makefile MUST contain the following modelines declaration at the top of the
 
 Your editor MUST understand and obey the modelines declared at the top. Adjust your editor accordingly.
 
-All variables MUST be aligned vertically. Consider [this](https://github.com/pagodabox/nanobox-pkgsrc-gonano/blob/master/hookyd/Makefile) example and follow exactly.
+All variables MUST be aligned vertically. Consider [this](https://github.com/mu-box/microbox-pkgsrc-gomicro/blob/main/hookyd/Makefile) example and follow exactly.
 
 ### build
 
 1. create a sandbox
-	
+
 	```bash
 	$ sandbox up [name]
 	```
@@ -92,21 +92,21 @@ All variables MUST be aligned vertically. Consider [this](https://github.com/pag
 3. Navigate to the package directory
 
   ```bash
-  $ cd /content/pkgsrc/gonano/[package_name]
+  $ cd /content/pkgsrc/gomicro/[package_name]
   ```
 
 4. Build distinfo file
 
 	Note: This step generates a checksum of the downloaded source. This step is required on a new package and when the source changes, perhaps on a new version.
-	
+
 	```bash
 	$ bmake distinfo
 	```
 
-5. Pre-fetch dependencies that already exist on the remote server 
+5. Pre-fetch dependencies that already exist on the remote server
 
 	WARNING: omitting this step may lead to unecessarily long build times
-	
+
 	```bash
 	$ bmake fetch-depends
 	```
@@ -116,28 +116,28 @@ All variables MUST be aligned vertically. Consider [this](https://github.com/pag
 	```bash
 	$ bmake
 	```
-	
+
 7. Generate patches if necessary
-	
+
 	1. Navigate to the build folder
 		```bash
-		$ cd /var/tmp/pkgsrc-build-opt-gonano/gonano/[package_name]/work/[package_source_dir]
+		$ cd /var/tmp/pkgsrc-build-opt-gomicro/gomicro/[package_name]/work/[package_source_dir]
 		```
-		
+
 	2. Use pkgvi to edit the source
 		```bash
 		$ pkgvi [path/to/src/file]
 		```
-		
+
 	3. Create a patch
 		```bash
-		$ mkdir /content/pkgsrc/gonano/[package_name]/patches
-		$ pkgdiff [path/to/src/file] > /content/pkgsrc/gonano/[package_name]/patches/patch-path_to_src_file
+		$ mkdir /content/pkgsrc/gomicro/[package_name]/patches
+		$ pkgdiff [path/to/src/file] > /content/pkgsrc/gomicro/[package_name]/patches/patch-path_to_src_file
 		```
-		
+
 	4. Return to the pkgsrc folder and add patch into the distinfo file
 		```bash
-		$ cd /content/pkgsrc/gonano/[package_name]
+		$ cd /content/pkgsrc/gomicro/[package_name]
 		$ bmake mps
 		```
 
@@ -148,7 +148,7 @@ All variables MUST be aligned vertically. Consider [this](https://github.com/pag
 	```
 
 9. Generate a PLIST file
-	
+
 	WARNING: A PLIST contains a list of files for the package. Omitting this step will generate an empty package.
 
 	```bash
@@ -186,21 +186,21 @@ If the software version has not changed, but a new patchset has been applied, th
 ### Iteration
 
 1. Create a sandbox
-	
+
 	```bash
 	$ sandbox create [name]
 	```
-	
+
 2. Enter the sandbox
 
 	``` bash
 	$ sandbox enter [name]
 	```
-	
+
 3. Navigate to the package directory
 
   ```bash
-  $ cd /content/pkgsrc/gonano/[package_name]
+  $ cd /content/pkgsrc/gomicro/[package_name]
   ```
 
 4. Re-generate the distinfo file
@@ -209,20 +209,20 @@ If the software version has not changed, but a new patchset has been applied, th
 	$ bmake distinfo
 	```
 
-5. Pre-fetch dependencies that already exist on the remote server 
+5. Pre-fetch dependencies that already exist on the remote server
 
 	WARNING: omitting this step may lead to unecessarily long build times
-	
+
 	```bash
 	$ bmake fetch-depends
 	```
-	
+
 6. Build
 
 	```bash
 	$ bmake
 	```
-	
+
 7. Create patches as necessary (see above)
 
 8. Update the PLIST
@@ -261,4 +261,4 @@ If the software version has not changed, but a new patchset has been applied, th
 
 ## License
 
-This project is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+This project is released under [The MIT License](http://opensource.org/licenses/MIT).

@@ -5,7 +5,7 @@
 VERSION=		0.10.0
 DISTNAME=		luvit-${VERSION}
 # PKGREVISION=		1
-CATEGORIES=		gonano
+CATEGORIES=		gomicro
 MASTER_SITES=		https://github.com/luvit/luvit
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -23,7 +23,7 @@ CONFIGURE_ARGS+=	--prefix=${DESTDIR}${PREFIX}
 # CONFIGURE_ARGS+=	--arch=ia32
 CONFIGURE_ARGS+=	--without-ssl
 CONFIGURE_ARGS+=	--without-fat
-ENVIRONMENT+=		PATH=/usr/local/sbin:/usr/local/bin:/opt/gonano/sbin:/opt/gonano/bin:/opt/gonano/gcc49/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENVIRONMENT+=		PATH=/usr/local/sbin:/usr/local/bin:/opt/gomicro/sbin:/opt/gomicro/bin:/opt/gomicro/gcc49/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENVIRONMENT+=		LINK=g++
 ENVIRONMENT+=		LDFLAGS="${LDFLAGS}"
 ENVIRONMENT+=		CFLAGS="${CFLAGS}"

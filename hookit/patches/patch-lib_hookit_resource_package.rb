@@ -7,12 +7,12 @@ $NetBSD$
          case scope
          when :default
 -          "/opt/local/bin/pkgin"
--        when :gopagoda
--          "/opt/gopagoda/bin/pkgin"
--        when :gonano
-           "/opt/gonano/bin/pkgin"
-+        when :nanobox
+-        when :gomicro
+-          "/opt/gomicro/bin/pkgin"
+-        when :gomicro
+           "/opt/gomicro/bin/pkgin"
++        when :microbox
 +          "/data/bin/pkgin"
          end
        end
- 
+

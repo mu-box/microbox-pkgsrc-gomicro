@@ -1,21 +1,21 @@
 # $NetBSD$
 # -*- mode: makefile; tab-width: 8; indent-tabs-mode: 1 -*-
 # vim: ts=8 sw=8 ft=make noet
-# git@github.com:pagodabox/openssh-portable.git
+# git@github.com:mu-box/openssh-portable.git
 
 VERSION=		7.1.P1
 # PKGREVISION=		1
 DISTNAME=		openssh-${VERSION:S/P//}
-CATEGORIES=		nanobox
-MASTER_SITES=		github.com/pagodabox/openssh-portable
+CATEGORIES=		microbox
+MASTER_SITES=		github.com/mu-box/openssh-portable
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		github.com/pagodabox/openssh-portable
+HOMEPAGE=		github.com/mu-box/openssh-portable
 COMMENT= 		A combination of Nano and Init
 LICENSE=		BSD
 
 GIT_REPOSITORIES=	openssh
-GIT_REPO.openssh=	git@github.com:pagodabox/openssh-portable.git
+GIT_REPO.openssh=	git@github.com:mu-box/openssh-portable.git
 GIT_TAG=		V_${VERSION:S/./_/g}-auth_script
 # GIT_TAG=		master
 
@@ -226,5 +226,5 @@ post-install:
 	  ${DESTDIR}${EGDIR}/sshd.pam
 .endif
 
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

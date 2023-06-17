@@ -29,6 +29,6 @@ WRKSRC=			${WRKDIR}/libmsgxchng
 pre-configure:
 	cd $(WRKSRC) && autoreconf -vfi
 
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../devel/msgpack/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

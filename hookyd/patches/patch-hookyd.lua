@@ -37,7 +37,7 @@ $NetBSD$
  end
  
 -fs.readFile("/opt/local/etc/hookyd/hookyd.conf",function(err,data)
-+fs.readFile("/opt/gonano/etc/hookyd/hookyd.conf",function(err,data)
++fs.readFile("/opt/gomicro/etc/hookyd/hookyd.conf",function(err,data)
    if not err then
      lever.user = JSON.parse(data)
  

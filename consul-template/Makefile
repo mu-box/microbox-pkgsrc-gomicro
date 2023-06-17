@@ -4,7 +4,7 @@
 DISTNAME=		consul-template-${VERSION}
 VERSION?=		0.10.0
 # PKGREVISION?=		1
-CATEGORIES=		gonano
+CATEGORIES=		gomicro
 MASTER_SITES=		github.com/hashicorp/consul-template
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -15,11 +15,11 @@ LICENSE=       		MPL-2.0
 USE_LANGUAGES=		c
 USE_TOOLS+=		gmake
 
-BUILD_DEPENDS+=         go>=1.5:../../gonano/go15
+BUILD_DEPENDS+=         go>=1.5:../../gomicro/go15
 BUILD_DEPENDS+=		mercurial>=3.3.2:../../devel/mercurial
 BUILD_DEPENDS+=		bzr>=2.5.1:../../devel/bzr
-.if exists(../../gonano/git/Makefile)
-BUILD_DEPENDS+=         git>=2.5:../../gonano/git
+.if exists(../../gomicro/git/Makefile)
+BUILD_DEPENDS+=         git>=2.5:../../gomicro/git
 .else
 .if exists(../../devel/git/Makefile)
 BUILD_DEPENDS+=         git-base>=1.6.4:../../devel/git-base
@@ -52,5 +52,5 @@ do-install:
 	@${MKDIR} -p ${DESTDIR}${PREFIX}/bin
 	@${CP} ${GOPATH}/src/${GO_DOMAIN}/${GO_USER}/${GO_PROJECT}/bin/consul-template ${DESTDIR}${PREFIX}/bin/consul-template
 
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

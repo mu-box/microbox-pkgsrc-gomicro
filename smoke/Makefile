@@ -4,7 +4,7 @@
 
 DISTNAME=		smoke-${VERSION}
 VERSION?=		1.2.12
-CATEGORIES=		pagodabox
+CATEGORIES=		microbox
 MASTER_SITES=		https://bitbucket.org/pagodabox-stormpack/smoke
 
 MAINTAINER=		andrew@pagodabox.com
@@ -26,7 +26,7 @@ MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 
-.include "../../gonano/erlang18/versions.mk"
+.include "../../gomicro/erlang18/versions.mk"
 .include "Makefile.versions"
 
 BUILD_DEFS+=		VARBASE SMOKE_USER SMOKE_GROUP
@@ -102,6 +102,6 @@ do-install:
 
 .include "../../devel/ncurses/buildlink3.mk"
 BUILDLINK_DEPMETHOD.erlang=	build
-.include "../../gonano/erlang18/buildlink3.mk"
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/erlang18/buildlink3.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

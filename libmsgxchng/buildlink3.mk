@@ -6,7 +6,7 @@ BUILDLINK_TREE+=  libmsgxchng
 LIBMSGXCHNG_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.libmsgxchng+= libmsgxchng>=0.0.0
-BUILDLINK_PKGSRCDIR.libmsgxchng?= ../../gonano/libmsgxchng
+BUILDLINK_PKGSRCDIR.libmsgxchng?= ../../gomicro/libmsgxchng
 
 .endif # LIBMSGXCHNG_BUILDLINK3_MK
 

@@ -9,7 +9,7 @@ LUVIT_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.luvit+=	luvit>=0.10.0
 BUILDLINK_ABI_DEPENDS.luvit?=	luvit>=0.10.0
-BUILDLINK_PKGSRCDIR.luvit?=		../../gonano/luvit
+BUILDLINK_PKGSRCDIR.luvit?=		../../gomicro/luvit
 
 .endif # LUVIT_BUILDLINK3_MK
 

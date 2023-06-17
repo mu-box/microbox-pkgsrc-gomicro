@@ -7,7 +7,7 @@ ERLANG_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.erlang+=	erlang>=18
 BUILDLINK_ABI_DEPENDS.erlang?=	erlang>=18
-BUILDLINK_PKGSRCDIR.erlang?=	../../gonano/erlang18
+BUILDLINK_PKGSRCDIR.erlang?=	../../gomicro/erlang18
 
 .endif # ERLANG_BUILDLINK3_MK
 

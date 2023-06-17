@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.31 2015/08/22 23:49:13 wiz Exp $
 
-.include "../../gonano/go/version.mk"
+.include "../../gomicro/go/version.mk"
 
 DISTNAME=	go${GO15_VERSION}.src
 PKGNAME=	go-${GO15_VERSION}
@@ -72,7 +72,7 @@ CHECK_INTERPRETER_SKIP+=	go/src/clean.rc
 CHECK_INTERPRETER_SKIP+=	go/src/make.rc
 CHECK_INTERPRETER_SKIP+=	go/src/run.rc
 
-BUILD_DEPENDS+=		go-1.4*:../../gonano/go14
+BUILD_DEPENDS+=		go-1.4*:../../gomicro/go14
 GOROOT_BOOTSTRAP=	${PREFIX}/go14
 
 do-build:

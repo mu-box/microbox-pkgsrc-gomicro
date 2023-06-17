@@ -5,10 +5,10 @@ detect_platform() {
     echo "SmartOS"
   elif [ $(uname | grep 'Linux') ]; then
     echo "Linux"
-  fi    
+  fi
 }
 
-project='gonano'
+project='gomicro'
 platform=$(detect_platform)
 depends=(
   net/libfetch
@@ -41,7 +41,7 @@ extra_packages=(
 # 0) clean start
 sudo rm -rf /opt/${project}
 sudo rm -rf /var/tmp/${project}-bootstrap
-# sudo rm -rf /content/packages/pkgsrc/gonano/Linux
+# sudo rm -rf /content/packages/pkgsrc/gomicro/Linux
 
 # 1) install build-essential
 sudo apt-get -y update -qq && \
@@ -140,7 +140,7 @@ sudo bash -c "/bin/cat > /opt/${project}/etc/pkgin/repositories.conf" <<END
 # Simply add repositories URIs one below the other
 #
 # WARNING: order matters, duplicates will not be added, if two
-# repositories hold the same package, it will be fetched from 
+# repositories hold the same package, it will be fetched from
 # the first one listed in this file.
 #
 # This file format supports the following macros:
@@ -159,8 +159,8 @@ sudo bash -c "/bin/cat > /opt/${project}/etc/pkgin/repositories.conf" <<END
 #
 # file:///usr/pkgsrc/packages/All
 
-# Nanobox public repository
-http://pkgsrc.nanobox.io/nanobox/${project}/${platform}
+# Microbox public repository
+https://pkgsrc.microbox.cloud/microbox/${project}/${platform}
 END
 
 # 10) tar
@@ -170,9 +170,9 @@ sudo tar -czf /var/tmp/bootstrap.tar.gz -C / opt/${project}
 curl \
   -k \
   -X POST \
-  -H "Key: ${NANOBOX_SECRET}" \
+  -H "Key: ${MICROBOX_SECRET}" \
   --data-binary \@/var/tmp/bootstrap.tar.gz \
-  https://pkgsrc.nanobox.io/${NANOBOX_USER}/${project}/${platform}/bootstrap.tar.gz
+  https://pkgsrc.microbox.cloud/${MICROBOX_USER}/${project}/${platform}/bootstrap.tar.gz
 
 # 12) build/install/publish extra packages
 for i in ${extra_packages[@]}; do

@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.7 2016/02/21 14:32:24 bsiegert Exp $
 
-.include "../../gonano/go/version.mk"
+.include "../../gomicro/go/version.mk"
 
 DISTNAME=	go${GO14_VERSION}.src
 PKGNAME=	go-${GO14_VERSION}

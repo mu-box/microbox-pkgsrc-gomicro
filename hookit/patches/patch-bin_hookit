@@ -6,7 +6,7 @@ $NetBSD$
  #!/usr/bin/env ruby
  begin
 -  MODULE_DIR = ENV['MODULE_DIR']  || "/opt/local/hookit/mod"
-+  MODULE_DIR = ENV['MODULE_DIR']  || "/opt/gonano/hookit/mod"
++  MODULE_DIR = ENV['MODULE_DIR']  || "/opt/gomicro/hookit/mod"
    LOG_LEVEL  = ENV['LOG_LEVEL']   || :error
    LOGFILE    = ENV['LOGFILE']     || '/var/log/hookit/hookit.log'
  

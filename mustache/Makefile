@@ -5,7 +5,7 @@
 VERSION=		1.0.2
 # PKGREVISION=		1
 DISTNAME=		mustache-${VERSION}
-CATEGORIES=		nanobox
+CATEGORIES=		microbox
 MASTER_SITES=		github.com/mustache/mustache
 
 MAINTAINER=		tyler@pagodabox.com
@@ -22,6 +22,6 @@ WRKSRC=			${WRKDIR}/mustache
 
 RUBY_APP_BINS=		mustache
 
-.include "../../gonano/ruby/ruby-app.mk"
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/ruby/ruby-app.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

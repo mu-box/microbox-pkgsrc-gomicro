@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=	--with-odbc=${BUILDLINK_PREFIX.unixodbc}
 pre-configure:
 	cd ${WRKSRC}; ./otp_build autoconf
 
-.include "../../gonano/erlang18/versions.mk"
+.include "../../gomicro/erlang18/versions.mk"
 
 
 BUILD_DEPENDS+=         libxslt>=1.1.28:../../textproc/libxslt
@@ -59,5 +59,5 @@ BUILD_DEPENDS+=         fop>=1.1:../../textproc/fop
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/java-vm.mk"
 .include "../../mk/termcap.buildlink3.mk"
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

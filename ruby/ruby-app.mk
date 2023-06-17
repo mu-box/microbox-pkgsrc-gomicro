@@ -21,7 +21,7 @@ do-install:
 	${MKDIR} ${DESTDIR}${PREFIX}/bin
 	for i in ${RUBY_APP_BINS}; \
 	do \
-		sed "s|@PREFIX@|${PREFIX}|g;s|@PKGBASE@|${PKGBASE:S/pb-//}|g;s|@RUBY_APP_BIN@|$$i|g" ${PKGSRCDIR}/gonano/ruby/files/ruby-binstub > ${DESTDIR}${PREFIX}/bin/$$i; \
+		sed "s|@PREFIX@|${PREFIX}|g;s|@PKGBASE@|${PKGBASE:S/pb-//}|g;s|@RUBY_APP_BIN@|$$i|g" ${PKGSRCDIR}/gomicro/ruby/files/ruby-binstub > ${DESTDIR}${PREFIX}/bin/$$i; \
 		chmod +x ${DESTDIR}${PREFIX}/bin/$$i; \
 	done;
 

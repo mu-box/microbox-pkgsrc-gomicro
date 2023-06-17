@@ -12,15 +12,15 @@ run_in_chroot() {
         -c "${cmd}"
 }
 
-for package in $(ls /content/pkgsrc/gonano); do
+for package in $(ls /content/pkgsrc/gomicro); do
 
   # ignore build-essential
   if [ "${package}" = "build-essential" ]; then
     continue
   fi
 
-  # ignore gonano-dns
-  if [ "${package}" = "gonano-dns" ]; then
+  # ignore gomicro-dns
+  if [ "${package}" = "gomicro-dns" ]; then
     continue
   fi
 
@@ -29,33 +29,33 @@ for package in $(ls /content/pkgsrc/gonano); do
     continue
   fi
 
-  # ignore nanoagent-git
-  if [ "${package}" = "nanoagent-git" ]; then
+  # ignore microagent-git
+  if [ "${package}" = "microagent-git" ]; then
     continue
   fi
 
-  # ignore nanoagent-http
-  if [ "${package}" = "nanoagent-http" ]; then
+  # ignore microagent-http
+  if [ "${package}" = "microagent-http" ]; then
     continue
   fi
 
-  # ignore nanoagent-logtap
-  if [ "${package}" = "nanoagent-logtap" ]; then
+  # ignore microagent-logtap
+  if [ "${package}" = "microagent-logtap" ]; then
     continue
   fi
 
-  # ignore nanoagent-postoffice
-  if [ "${package}" = "nanoagent-postoffice" ]; then
+  # ignore microagent-postoffice
+  if [ "${package}" = "microagent-postoffice" ]; then
     continue
   fi
 
-  # ignore nanoagent-pulse
-  if [ "${package}" = "nanoagent-pulse" ]; then
+  # ignore microagent-pulse
+  if [ "${package}" = "microagent-pulse" ]; then
     continue
   fi
 
-  # ignore nanoagent-warehouse
-  if [ "${package}" = "nanoagent-warehouse" ]; then
+  # ignore microagent-warehouse
+  if [ "${package}" = "microagent-warehouse" ]; then
     continue
   fi
 
@@ -65,13 +65,13 @@ for package in $(ls /content/pkgsrc/gonano); do
   fi
 
   # ignore if it's not a real package
-  if [ ! -f /content/pkgsrc/gonano/${package}/Makefile ]; then
+  if [ ! -f /content/pkgsrc/gomicro/${package}/Makefile ]; then
     continue
   fi
 
   # skip if package is already built
-  pkg_name=$(/opt/gonano/bin/bmake -C /content/pkgsrc/gonano/${package} show-var VARNAME=PKGNAME)
-  if [ -f /content/packages/pkgsrc/gonano/Linux/All/${pkg_name}.tgz ]; then
+  pkg_name=$(/opt/gomicro/bin/bmake -C /content/pkgsrc/gomicro/${package} show-var VARNAME=PKGNAME)
+  if [ -f /content/packages/pkgsrc/gomicro/Linux/All/${pkg_name}.tgz ]; then
     echo "skipping ${package} as it's already built"
 
     # cleaning cruft
@@ -90,10 +90,10 @@ for package in $(ls /content/pkgsrc/gonano); do
   fi
 
   # 2) make package
-  run_in_chroot ${package} "/opt/gonano/bin/bmake -C /content/pkgsrc/gonano/${package} package"
+  run_in_chroot ${package} "/opt/gomicro/bin/bmake -C /content/pkgsrc/gomicro/${package} package"
 
   # 3) upload package
-  run_in_chroot ${package} "/opt/gonano/bin/bmake -C /content/pkgsrc/gonano/${package} publish"
+  run_in_chroot ${package} "/opt/gomicro/bin/bmake -C /content/pkgsrc/gomicro/${package} publish"
 
   # 4) cleanup chroot
   # /opt/util/sandbox rm ${package}
@@ -113,8 +113,8 @@ for package in devel/jq; do
   fi
 
   # skip if package is already built
-  pkg_name=$(/opt/gonano/bin/bmake -C /content/pkgsrc/${package} show-var VARNAME=PKGNAME)
-  if [ -f /content/packages/pkgsrc/gonano/Linux/All/${pkg_name}.tgz ]; then
+  pkg_name=$(/opt/gomicro/bin/bmake -C /content/pkgsrc/${package} show-var VARNAME=PKGNAME)
+  if [ -f /content/packages/pkgsrc/gomicro/Linux/All/${pkg_name}.tgz ]; then
     echo "skipping ${package} as it's already built"
 
     # cleaning cruft
@@ -135,10 +135,10 @@ for package in devel/jq; do
   fi
 
   # 2) make package
-  run_in_chroot ${chroot} "/opt/gonano/bin/bmake -C /content/pkgsrc/${package} package"
+  run_in_chroot ${chroot} "/opt/gomicro/bin/bmake -C /content/pkgsrc/${package} package"
 
   # 3) upload package
-  run_in_chroot ${chroot} "/opt/gonano/bin/bmake -C /content/pkgsrc/${package} publish"
+  run_in_chroot ${chroot} "/opt/gomicro/bin/bmake -C /content/pkgsrc/${package} publish"
 
   # 4) cleanup chroot
   # /opt/util/sandbox rm ${package}

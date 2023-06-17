@@ -24,8 +24,8 @@
 .if !defined(_PKG_MK_GIT_PACKAGE_MK)
 _PKG_MK_GIT_PACKAGE_MK= # defined
 
-# .if exists(../../gonano/git/Makefile)
-# BUILD_DEPENDS+=		git>=2.3:../../gonano/git
+# .if exists(../../gomicro/git/Makefile)
+# BUILD_DEPENDS+=		git>=2.3:../../gomicro/git
 # .else
 .if exists(../../devel/git/Makefile)
 BUILD_DEPENDS+=         git-base>=1.6.4:../../devel/git-base

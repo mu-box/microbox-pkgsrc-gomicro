@@ -4,7 +4,7 @@
 DISTNAME=		repositorium-${VERSION}
 VERSION?=		0.0.2
 # PKGREVISION?=		1
-CATEGORIES=		gonano
+CATEGORIES=		gomicro
 MASTER_SITES=		github.com/repositorium/repositorium
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -25,6 +25,6 @@ GO_DOMAIN=		github.com
 GO_USER=		repositorium
 GO_PROJECT=		repositorium
 
-.include "../../gonano/git/git-package.mk"
-.include "../../gonano/go/go-app.mk"
+.include "../../gomicro/git/git-package.mk"
+.include "../../gomicro/go/go-app.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -7,15 +7,15 @@ VERSION?=		0.0.2
 PG_VISIBILITY=		public
 # PKGREVISION?=		1
 CATEGORIES=		devel
-MASTER_SITES=		https://bitbucket.org/nanobox/vtepd
+MASTER_SITES=		https://bitbucket.org/microbox/vtepd
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		https://bitbucket.org/nanobox/vtepd
+HOMEPAGE=		https://bitbucket.org/microbox/vtepd
 COMMENT=		vtep daemon
-# LICENSE=		
+# LICENSE=
 
 GIT_REPOSITORIES=	vtepd
-GIT_REPO.vtepd=		git@bitbucket.org:nanobox/vtepd.git
+GIT_REPO.vtepd=		git@bitbucket.org:mubox/vtepd.git
 GIT_TAG=		v${VERSION}
 
 GNU_CONFIGURE=		yes
@@ -29,9 +29,9 @@ WRKSRC=			${WRKDIR}/vtepd
 pre-configure:
 	cd $(WRKSRC) && autoreconf -vfi
 
-.include "../../gonano/libbframe/buildlink3.mk"
-.include "../../gonano/libmsgxchng/buildlink3.mk"
+.include "../../gomicro/libbframe/buildlink3.mk"
+.include "../../gomicro/libmsgxchng/buildlink3.mk"
 .include "../../devel/libuv/buildlink3.mk"
 .include "../../devel/msgpack/buildlink3.mk"
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

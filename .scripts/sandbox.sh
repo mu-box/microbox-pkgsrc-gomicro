@@ -24,14 +24,14 @@ detect_platform() {
     echo "SmartOS"
   elif [ $(uname | grep 'Linux') ]; then
     echo "Linux"
-  fi    
+  fi
 }
 
 create_chroot() {
   chroot=$1
   user=$(whoami)
   group=$(id -g -n ${user})
-  project="gonano"
+  project="gomicro"
   platform=$(detect_platform)
 
   # ensure chroot dir exist
@@ -39,9 +39,9 @@ create_chroot() {
 
   # make the chroot
   sudo \
-    /opt/gonano/sbin/mksandbox \
+    /opt/gomicro/sbin/mksandbox \
       --without-pkgsrc \
-      --rwdirs=/run,/content,/home,/var/.ssh,/content/pkgsrc,/content/pkgsrc/gonano,/content/packages,/content/distfiles \
+      --rwdirs=/run,/content,/home,/var/.ssh,/content/pkgsrc,/content/pkgsrc/gomicro,/content/packages,/content/distfiles \
       /chroot/${chroot}
 
   # copy ssh keys
@@ -64,7 +64,7 @@ create_chroot() {
   # fetch bootstrap
   if [ ! -f /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz ]; then
     wget \
-      http://pkgsrc.nanobox.io/nanobox/${project}/${platform}/bootstrap.tar.gz \
+      https://pkgsrc.microbox.cloud/microbox/${project}/${platform}/bootstrap.tar.gz \
       -O /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz
   fi
 
@@ -75,9 +75,9 @@ create_chroot() {
       -f /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz \
       -C /chroot/${chroot}
 
-  # ensure /var/gonano/db/pkgin exists
-  if [ ! -d /chroot/${chroot}/var/gonano/db/pkgin ]; then
-    sudo mkdir -p /chroot/${chroot}/var/gonano/db/pkgin
+  # ensure /var/gomicro/db/pkgin exists
+  if [ ! -d /chroot/${chroot}/var/gomicro/db/pkgin ]; then
+    sudo mkdir -p /chroot/${chroot}/var/gomicro/db/pkgin
   fi
 
   # ensure the platform dir exists
@@ -85,16 +85,16 @@ create_chroot() {
     sudo mkdir -p /content/packages/pkgsrc/${project}/${platform}/All
   fi
 
-  # link /var/gonano/db/pkgin/cache to package dir
-  if [ ! -L /chroot/${chroot}/var/gonano/db/pkgin/cache ]; then
-    sudo ln -s /content/packages/pkgsrc/${project}/${platform}/All /chroot/${chroot}/var/gonano/db/pkgin/cache
+  # link /var/gomicro/db/pkgin/cache to package dir
+  if [ ! -L /chroot/${chroot}/var/gomicro/db/pkgin/cache ]; then
+    sudo ln -s /content/packages/pkgsrc/${project}/${platform}/All /chroot/${chroot}/var/gomicro/db/pkgin/cache
   fi
 
-  # chown /opt/gonano directory
-  echo "chown-ing /opt/gonano directory"
+  # chown /opt/gomicro directory
+  echo "chown-ing /opt/gomicro directory"
   sudo \
     /chroot/${chroot}/sandbox \
-      chown -R ${user}:${group} /opt/gonano
+      chown -R ${user}:${group} /opt/gomicro
 }
 
 enter_chroot() {

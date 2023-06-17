@@ -2,29 +2,29 @@
 # vi: set ft=ruby :
 
 # determine vagrant provider
-ENV['VAGRANT_DEFAULT_PROVIDER'] = ENV['NANOBOX_BUILD_VAGRANT_PROVIDER'] || 'virtualbox'
+ENV['VAGRANT_DEFAULT_PROVIDER'] = ENV['MICROBOX_BUILD_VAGRANT_PROVIDER'] || 'virtualbox'
 
 # determine pkgsrc-lite directory
 [
-  '../../nanobox-pkgsrc-lite',
+  '../../microbox-pkgsrc-lite',
   '../../pkgsrc-lite',
   '../.pkgsrc-lite'
 ].each do |candidate|
   path = File.expand_path(candidate, __FILE__)
   if ::File.exists? path
     $pkgsrc = path
-  end  
+  end
 end
 
 # if pkgsrc-lite does not exist, let's fetch it now
 if not $pkgsrc
   $pkgsrc = File.expand_path('../.pkgsrc-lite', __FILE__)
-  clone_url = 'https://github.com/pagodabox/nanobox-pkgsrc-lite.git'
+  clone_url = 'https://github.com/mu-box/microbox-pkgsrc-lite.git'
 
   stdout_sync = STDOUT.sync
   stderr_sync = STDERR.sync
   STDOUT.sync = STDERR.sync = true
-  puts "pagodabox/nanobox-pkgsrc-lite is required to build packages, cloning into .pkgsrc-lite..."
+  puts "mu-box/microbox-pkgsrc-lite is required to build packages, cloning into .pkgsrc-lite..."
 
   IO.popen "git clone #{clone_url} #{$pkgsrc}" do |out|
     until out.eof?
@@ -45,25 +45,25 @@ end
 end
 
 Vagrant.configure('2') do |config|
-  
+
   config.vm.define "Ubuntu" do |ubuntu|
     ubuntu.vm.box = 'trusty64'
-    ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+    ubuntu.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
   end
 
   # config.vm.define "vxlan-test-1" do |ubuntu|
   #   ubuntu.vm.box = 'trusty64'
-  #   ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  #   ubuntu.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
   # end
 
   # config.vm.define "vxlan-test-2" do |ubuntu|
   #   ubuntu.vm.box = 'trusty64'
-  #   ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  #   ubuntu.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
   # end
 
   # config.vm.define "vxlan-test-3" do |ubuntu|
   #   ubuntu.vm.box = 'trusty64'
-  #   ubuntu.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  #   ubuntu.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
   # end
 
   config.vm.provider 'virtualbox' do |v|
@@ -76,7 +76,7 @@ Vagrant.configure('2') do |config|
     v.vmx["numvcpus"] = "4"
     v.gui = false
     override.vm.box = "trusty64_vmware"
-    override.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_vmware.box'
+    override.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_vmware.box'
   end
 
   config.vm.provider "docker" do |v, override|
@@ -84,7 +84,7 @@ Vagrant.configure('2') do |config|
     v.create_args = ['--privileged']
     v.expose = [22]
     v.has_ssh = true
-    
+
     override.vm.box = nil
     override.vm.box_url = nil
   end
@@ -104,9 +104,9 @@ Vagrant.configure('2') do |config|
   #   smartos.zone.disk_size = 20
   # end
 
-  nanobox_user = ENV["NANOBOX_USER"] || 'nanobox'
-  nanobox_project = ENV["NANOBOX_GONANO_PROJECT"] || 'gonano'
-  nanobox_secret = ENV["NANOBOX_GONANO_SECRET"]
+  microbox_user = ENV["MICROBOX_USER"] || 'microbox'
+  microbox_project = ENV["MICROBOX_GOMICRO_PROJECT"] || 'gomicro'
+  microbox_secret = ENV["MICROBOX_GOMICRO_SECRET"]
 
   # cache
   config.vm.synced_folder "./.distfiles", "/content/distfiles"#, type: "nfs"
@@ -115,7 +115,7 @@ Vagrant.configure('2') do |config|
   # pkgsrc framework
   config.vm.synced_folder $pkgsrc, "/content/pkgsrc"#, type: "nfs"
   # package definitions
-  config.vm.synced_folder ".", "/content/pkgsrc/gonano"#, type: "nfs"
+  config.vm.synced_folder ".", "/content/pkgsrc/gomicro"#, type: "nfs"
 
   # utility scripts
   config.vm.synced_folder "./.scripts", "/opt/util"#, type: 'nfs'
@@ -126,10 +126,10 @@ Vagrant.configure('2') do |config|
   config.vm.provision "shell", inline: <<-SCRIPT
     echo "Preparing Environment..."
     echo # Vagrant environment variables > /etc/profile.d/vagrant.sh
-    echo export PATH=/opt/gonano/sbin:/opt/gonano/bin:/opt/gonano/gcc49/bin:/opt/gonano/gnu/bin:$PATH >> /etc/profile.d/vagrant.sh
-    echo export NANOBOX_USER=#{nanobox_user} >> /etc/profile.d/vagrant.sh
-    echo export NANOBOX_PROJECT=#{nanobox_project} >> /etc/profile.d/vagrant.sh
-    echo export NANOBOX_SECRET=#{nanobox_secret} >> /etc/profile.d/vagrant.sh
+    echo export PATH=/opt/gomicro/sbin:/opt/gomicro/bin:/opt/gomicro/gcc49/bin:/opt/gomicro/gnu/bin:$PATH >> /etc/profile.d/vagrant.sh
+    echo export MICROBOX_USER=#{microbox_user} >> /etc/profile.d/vagrant.sh
+    echo export MICROBOX_PROJECT=#{microbox_project} >> /etc/profile.d/vagrant.sh
+    echo export MICROBOX_SECRET=#{microbox_secret} >> /etc/profile.d/vagrant.sh
     echo umask 022 >> /etc/profile.d/vagrant.sh
     chmod +x /etc/profile.d/vagrant.sh
   SCRIPT
@@ -148,29 +148,29 @@ Vagrant.configure('2') do |config|
       platform="SmartOS"
     elif [ $(uname | grep 'Linux') ]; then
       platform="Linux"
-    fi 
+    fi
 
     # download and extract the bootstrap
-    if [ ! -d /opt/gonano ]; then
+    if [ ! -d /opt/gomicro ]; then
       curl \
         -s \
-        http://pkgsrc.nanobox.io/nanobox/gonano/${platform}/bootstrap.tar.gz \
+        https://pkgsrc.microbox.cloud/microbox/gomicro/${platform}/bootstrap.tar.gz \
           | tar \
               -xz \
               -f - \
               -C /
     fi
 
-    # ensure /var/gonano/db exists
-    if [ ! -d /var/gonano/db ]; then
-      mkdir -p /var/gonano/db
+    # ensure /var/gomicro/db exists
+    if [ ! -d /var/gomicro/db ]; then
+      mkdir -p /var/gomicro/db
     fi
   SCRIPT
 
   config.vm.provision 'shell', inline: <<-SCRIPT
     echo "Install mksandbox utility..."
-    if [ ! -f /opt/gonano/sbin/mksandbox ]; then
-      /opt/gonano/bin/pkgin -y in mksandbox
+    if [ ! -f /opt/gomicro/sbin/mksandbox ]; then
+      /opt/gomicro/bin/pkgin -y in mksandbox
     fi
   SCRIPT
 

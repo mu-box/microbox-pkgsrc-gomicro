@@ -6,7 +6,7 @@ BUILDLINK_TREE+=  libbframe
 LIBBFRAME_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.libbframe+= libbframe>=0.0.0
-BUILDLINK_PKGSRCDIR.libbframe?= ../../gonano/libbframe
+BUILDLINK_PKGSRCDIR.libbframe?= ../../gomicro/libbframe
 
 .endif # LIBBFRAME_BUILDLINK3_MK
 

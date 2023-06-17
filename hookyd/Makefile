@@ -6,15 +6,15 @@ VERSION=		0.0.0
 PKGREVISION=		3
 DISTNAME=		hookyd-${VERSION}
 CATEGORIES=		pagoda
-MASTER_SITES=		github.com/pagodabox/hookyd
+MASTER_SITES=		github.com/mu-box/hookyd
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		github.com/pagodabox/hookyd
+HOMEPAGE=		github.com/mu-box/hookyd
 COMMENT= 		A management plane for executing hooks remotely
 #LICENSE=		# TODO: (see mk/license.mk)
 
 GIT_REPOSITORIES=	hookyd
-GIT_REPO.hookyd=	git@github.com:pagodabox/hookyd.git
+GIT_REPO.hookyd=	git@github.com:mu-box/hookyd.git
 # GIT_TAG=		v${VERSION}
 GIT_TAG=		master
 
@@ -48,6 +48,6 @@ install-config:
 		cp ${FILESDIR}/$$i ${DESTDIR}${PREFIX}/etc/hookyd/; \
 	done
 
-.include "../../gonano/luvit/buildlink3.mk"
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/luvit/buildlink3.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

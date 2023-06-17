@@ -1,21 +1,21 @@
 # $NetBSD$
 # -*- mode: makefile; tab-width: 8; indent-tabs-mode: 1 -*-
 # vim: ts=8 sw=8 ft=make noet
-# git@github.com:pagodabox/git.git
+# git@github.com:mu-box/git.git
 
 VERSION=		2.5.0
 # PKGREVISION=		1
 DISTNAME=		git-${VERSION}
-CATEGORIES=		nanobox
-MASTER_SITES=		github.com/pagodabox/git
+CATEGORIES=		microbox
+MASTER_SITES=		github.com/mu-box/git
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		github.com/pagodabox/git
+HOMEPAGE=		github.com/mu-box/git
 COMMENT= 		Git - the stupid content tracker
 LICENSE=		gnu-gpl-v2
 
 GIT_REPOSITORIES=	git
-GIT_REPO.git=		git@github.com:pagodabox/git.git
+GIT_REPO.git=		git@github.com:mu-box/git.git
 GIT_TAG=		v${VERSION}-no-sideband-allow-archive-commit
 # GIT_TAG=		bugfix/syntax
 
@@ -149,5 +149,5 @@ pre-configure:
 .include "../../lang/perl5/module.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

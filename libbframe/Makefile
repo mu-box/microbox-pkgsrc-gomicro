@@ -30,5 +30,5 @@ pre-configure:
 	cd $(WRKSRC) && autoreconf -vfi
 
 
-.include "../../gonano/git/git-package.mk"
+.include "../../gomicro/git/git-package.mk"
 .include "../../mk/bsd.pkg.mk"
